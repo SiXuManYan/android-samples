@@ -8,9 +8,9 @@ plugins {
 
 android {
     compileSdkVersion 30
-
+    buildToolsVersion "30.0.3"
     defaultConfig {
-        applicationId "com.example.mapdemo"
+        applicationId "com.jcs.where"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -40,6 +40,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -47,6 +50,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'com.android.volley:volley:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
     // GMS
     gmsImplementation 'com.google.android.gms:play-services-maps:17.0.1'

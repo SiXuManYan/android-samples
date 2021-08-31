@@ -46,15 +46,14 @@ public class MyLocationDemoActivity extends AppCompatActivity
         ActivityCompat.OnRequestPermissionsResultCallback {
 
     /**
-     * Request code for location permission request.
+     * 位置许可请求的请求代码
      *
      * @see #onRequestPermissionsResult(int, String[], int[])
      */
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
 
     /**
-     * Flag indicating whether a requested permission has been denied after returning in
-     * {@link #onRequestPermissionsResult(int, String[], int[])}.
+     *指示在返回onRequestPermissionsResult(int, String[], int[])后请求的权限是否被拒绝的标志。
      */
     private boolean permissionDenied = false;
 
@@ -79,28 +78,28 @@ public class MyLocationDemoActivity extends AppCompatActivity
     }
 
     /**
-     * Enables the My Location layer if the fine location permission has been granted.
+     * 如果已授予精细位置权限，则启用“我的位置”图层。
      */
     private void enableMyLocation() {
-        // [START maps_check_location_permission]
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             if (map != null) {
                 map.setMyLocationEnabled(true);
             }
         } else {
-            // Permission to access the location is missing. Show rationale and request permission
+            // 缺少访问该位置的权限。显示理由并请求许可
             PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
                 Manifest.permission.ACCESS_FINE_LOCATION, true);
         }
-        // [END maps_check_location_permission]
+
     }
 
     @Override
     public boolean onMyLocationButtonClick() {
         Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-        // Return false so that we don't consume the event and the default behavior still occurs
-        // (the camera animates to the user's current position).
+        // 返回false，这样我们就不会消费事件，默认行为仍然发生
+        // (the camera animates to 用户的当前位置 ).
         return false;
     }
 
@@ -109,7 +108,7 @@ public class MyLocationDemoActivity extends AppCompatActivity
         Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
     }
 
-    // [START maps_check_location_permission_result]
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
@@ -117,30 +116,28 @@ public class MyLocationDemoActivity extends AppCompatActivity
         }
 
         if (PermissionUtils.isPermissionGranted(permissions, grantResults, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            // Enable the my location layer if the permission has been granted.
+            // 如果已授予权限，则启用我的位置图层。
             enableMyLocation();
         } else {
-            // Permission was denied. Display an error message
-            // [START_EXCLUDE]
-            // Display the missing permission error dialog when the fragments resume.
+            // 权限被拒绝。显示错误信息
+            // Display the missing permission error dialog when the fragments resume.(当片段恢复时显示缺少权限错误对话框)
+
             permissionDenied = true;
-            // [END_EXCLUDE]
         }
     }
-    // [END maps_check_location_permission_result]
 
     @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
         if (permissionDenied) {
-            // Permission was not granted, display error dialog.
+            // 未授予权限，显示错误对话框。
             showMissingPermissionError();
             permissionDenied = false;
         }
     }
 
     /**
-     * Displays a dialog with error message explaining that the location permission is missing.
+     * 显示带有错误消息的对话框，说明缺少位置权限。
      */
     private void showMissingPermissionError() {
         PermissionUtils.PermissionDeniedDialog

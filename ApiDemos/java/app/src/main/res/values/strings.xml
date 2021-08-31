@@ -16,6 +16,7 @@
 <resources>
     <string name="demo_title">Maps SDK for Android Demos (Java)</string>
     <string name="no_demos">No demos</string>
+    <string name="maps_api_key">AIzaSyDK-oIzSIMe0a-PEV8R2SYtMoQK2E8CwQA</string>
     <string name="play_services_not_installed">Google Play services is not installed on this device.</string>
 
     <string name="alpha">Alpha</string>

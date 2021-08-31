@@ -59,7 +59,7 @@ import java.util.ArrayList
 import java.util.Random
 
 /**
- * This shows how to place markers on a map.
+ * 这显示了如何在地图上放置标记。
  */
 class MarkerDemoActivity :
         AppCompatActivity(),
@@ -72,14 +72,12 @@ class MarkerDemoActivity :
 
     private val TAG = MarkerDemoActivity::class.java.name
 
-    /** This is ok to be lateinit as it is initialised in onMapReady */
+    /** 这是可以延迟的，因为它是在 onMapReady 中初始化的 */
     private lateinit var map: GoogleMap
 
     /**
-     * Keeps track of the last selected marker (though it may no longer be selected).  This is
-     * useful for refreshing the info window.
-     *
-     * Must be nullable as it is null when no marker has been selected
+     * 跟踪最后选择的 maker（尽管它可能不再被选中）。 这对于刷新信息窗口很有用。
+     必须可以为空，因为当没有选择标记时它为空
      */
     private var lastSelectedMarker: Marker? = null
 
@@ -96,7 +94,7 @@ class MarkerDemoActivity :
             "ALICE_SPRINGS" to LatLng(-24.6980, 133.8807)
     )
 
-    /** These can be lateinit as they are set in onCreate */
+    /** T这些可以是 lateinit 因为它们是在 onCreate 中设置的 */
     private lateinit var topText: TextView
     private lateinit var rotationBar: SeekBar
     private lateinit var flatBox: CheckBox
@@ -104,17 +102,17 @@ class MarkerDemoActivity :
 
     private val random = Random()
 
-    /** Demonstrates customizing the info window and/or its contents.  */
+    /**演示自定义信息窗口及其内容。.  */
     internal inner class CustomInfoWindowAdapter : InfoWindowAdapter {
 
-        // These are both view groups containing an ImageView with id "badge" and two
-        // TextViews with id "title" and "snippet".
+        // 这两个视图组都包含一个 ID 为“badge”的 ImageView 和两个
+        // id为“title”和“snippet”的TextViews。
         private val window: View = layoutInflater.inflate(R.layout.custom_info_window, null)
         private val contents: View = layoutInflater.inflate(R.layout.custom_info_contents, null)
 
         override fun getInfoWindow(marker: Marker): View? {
             if (options.checkedRadioButtonId != R.id.custom_info_window) {
-                // This means that getInfoContents will be called.
+                // 这意味着将调用 getInfoContents。
                 return null
             }
             render(marker, window)
@@ -123,7 +121,7 @@ class MarkerDemoActivity :
 
         override fun getInfoContents(marker: Marker): View? {
             if (options.checkedRadioButtonId != R.id.custom_info_contents) {
-                // This means that the default info contents will be used.
+                // 这意味着将使用默认信息内容。
                 return null
             }
             render(marker, contents)

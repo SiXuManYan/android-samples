@@ -30,6 +30,7 @@ public final class DemoDetailsList {
             new DemoDetails(R.string.basic_map_demo_label,
                     R.string.basic_map_demo_description,
                     BasicMapDemoActivity.class),
+
             new DemoDetails(R.string.camera_demo_label,
                     R.string.camera_demo_description,
                     CameraDemoActivity.class),

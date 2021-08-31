@@ -40,6 +40,7 @@ import com.google.android.gms.maps.model.PolylineOptions
 
 /**
  * This shows how to change the camera position for the map.
+ * 这显示了如何更改地图的相机位置
  */
 // [START maps_camera_events]
 class CameraDemoActivity :

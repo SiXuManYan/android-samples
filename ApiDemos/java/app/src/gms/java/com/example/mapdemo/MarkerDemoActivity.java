@@ -62,7 +62,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * This shows how to place markers on a map.
+ * 这显示了如何在地图上放置标记。
  */
 public class MarkerDemoActivity extends AppCompatActivity implements
         OnMarkerClickListener,
@@ -87,11 +87,11 @@ public class MarkerDemoActivity extends AppCompatActivity implements
 
     private static final LatLng ALICE_SPRINGS = new LatLng(-24.6980, 133.8807);
 
-    /** Demonstrates customizing the info window and/or its contents. */
+    /** 演示自定义信息窗口及其内容。 */
     class CustomInfoWindowAdapter implements InfoWindowAdapter {
 
-        // These are both viewgroups containing an ImageView with id "badge" and two TextViews with id
-        // "title" and "snippet".
+        // 这些都是包含一个 ID 为“徽章”的 ImageView 和两个 ID 为 TextView 的视图组
+        // “标题”和“片段”
         private final View mWindow;
 
         private final View mContents;
@@ -104,7 +104,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
         @Override
         public View getInfoWindow(Marker marker) {
             if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_window) {
-                // This means that getInfoContents will be called.
+                // 这意味着将调用 getInfoContents。
                 return null;
             }
             render(marker, mWindow);
@@ -114,7 +114,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
         @Override
         public View getInfoContents(Marker marker) {
             if (mOptions.getCheckedRadioButtonId() != R.id.custom_info_contents) {
-                // This means that the default info contents will be used.
+                // 这意味着将使用默认信息内容。
                 return null;
             }
             render(marker, mContents);
@@ -123,7 +123,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
 
         private void render(Marker marker, View view) {
             int badge;
-            // Use the equals() method on a Marker to check for equals.  Do not use ==.
+            // 在标记上使用 equals() 方法来检查相等。不要使用==。
             if (marker.equals(mBrisbane)) {
                 badge = R.drawable.badge_qld;
             } else if (marker.equals(mAdelaide)) {
@@ -143,7 +143,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
             } else if (marker.equals(mDarwin4)) {
                 badge = R.drawable.badge_nt;
             } else {
-                // Passing 0 to setImageResource will clear the image view.
+                // 将 0 传递给 setImageResource 将清除图像视图。
                 badge = 0;
             }
             ((ImageView) view.findViewById(R.id.badge)).setImageResource(badge);
@@ -274,14 +274,14 @@ public class MarkerDemoActivity extends AppCompatActivity implements
     }
 
     private void addMarkersToMap() {
-        // Uses a colored icon.
+        // 使用彩色图标。
         mBrisbane = mMap.addMarker(new MarkerOptions()
                 .position(BRISBANE)
                 .title("Brisbane")
                 .snippet("Population: 2,074,200")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
-        // Uses a custom icon with the info window popping out of the center of the icon.
+        // 使用自定义图标，信息窗口从图标中心弹出。
         mSydney = mMap.addMarker(new MarkerOptions()
                 .position(SYDNEY)
                 .title("Sydney")
@@ -289,14 +289,14 @@ public class MarkerDemoActivity extends AppCompatActivity implements
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.arrow))
                 .infoWindowAnchor(0.5f, 0.5f));
 
-        // Creates a draggable marker. Long press to drag.
+        // 创建可拖动标记。长按拖动。
         mMelbourne = mMap.addMarker(new MarkerOptions()
                 .position(MELBOURNE)
                 .title("Melbourne")
                 .snippet("Population: 4,137,400")
                 .draggable(true));
 
-        // Place four markers on top of each other with differing z-indexes.
+        // 使用不同的 z 索引将四个标记放在彼此的顶部。
         mDarwin1 = mMap.addMarker(new MarkerOptions()
                 .position(DARWIN)
                 .title("Darwin Marker 1")
@@ -319,7 +319,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
                 .zIndex(4));
 
 
-        // A few more markers for good measure.
+        // 还有一些标记可以很好地衡量
         mPerth = mMap.addMarker(new MarkerOptions()
                 .position(PERTH)
                 .title("Perth")
@@ -329,14 +329,13 @@ public class MarkerDemoActivity extends AppCompatActivity implements
                 .title("Adelaide")
                 .snippet("Population: 1,213,000"));
 
-        // Vector drawable resource as a marker icon.
+        // 矢量可绘制资源作为标记图标。
         mMap.addMarker(new MarkerOptions()
                 .position(ALICE_SPRINGS)
                 .icon(vectorToBitmap(R.drawable.ic_android, Color.parseColor("#A4C639")))
                 .title("Alice Springs"));
 
-        // Creates a marker rainbow demonstrating how to create default marker icons of different
-        // hues (colors).
+        // 创建一个maker彩虹，演示如何创建不同色调（颜色）的默认标记图标。
         float rotation = mRotationBar.getProgress();
         boolean flat = mFlatBox.isChecked();
 
@@ -355,8 +354,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
     }
 
     /**
-     * Demonstrates converting a {@link Drawable} to a {@link BitmapDescriptor},
-     * for use as a marker icon.
+     * 演示将 {@link Drawable} 转换为 {@link BitmapDescriptor}，用作标记图标
      */
     private BitmapDescriptor vectorToBitmap(@DrawableRes int id, @ColorInt int color) {
         Drawable vectorDrawable = ResourcesCompat.getDrawable(getResources(), id, null);
@@ -377,7 +375,7 @@ public class MarkerDemoActivity extends AppCompatActivity implements
         return true;
     }
 
-    /** Called when the Clear button is clicked. */
+    /** 单击清除按钮时调用。 */
     public void onClearMap(View view) {
         if (!checkReady()) {
             return;
@@ -385,17 +383,17 @@ public class MarkerDemoActivity extends AppCompatActivity implements
         mMap.clear();
     }
 
-    /** Called when the Reset button is clicked. */
+    /** 单击重置按钮时调用. */
     public void onResetMap(View view) {
         if (!checkReady()) {
             return;
         }
-        // Clear the map because we don't want duplicates of the markers.
+        // 清除地图，因为我们不希望标记重复。
         mMap.clear();
         addMarkersToMap();
     }
 
-    /** Called when the Reset button is clicked. */
+    /** 单击重置按钮时调用  */
     public void onToggleFlat(View view) {
         if (!checkReady()) {
             return;
@@ -406,6 +404,9 @@ public class MarkerDemoActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     *  maker旋转
+     */
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         if (!checkReady()) {
@@ -417,24 +418,29 @@ public class MarkerDemoActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * 在开始跟踪触摸
+     */
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        // Do nothing.
+
     }
 
+    /**
+     * 结束跟踪触摸
+     */
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // Do nothing.
+
     }
 
-    //
-    // Marker related listeners.
-    //
-
+    /**
+     * 标记相关的侦听器。
+     */
     @Override
     public boolean onMarkerClick(final Marker marker) {
         if (marker.equals(mPerth)) {
-            // This causes the marker at Perth to bounce into position when it is clicked.
+            // 这会导致 Perth 的maker 在单击时弹回原位
             final Handler handler = new Handler();
             final long start = SystemClock.uptimeMillis();
             final long duration = 1500;
@@ -450,55 +456,73 @@ public class MarkerDemoActivity extends AppCompatActivity implements
                     marker.setAnchor(0.5f, 1.0f + 2 * t);
 
                     if (t > 0.0) {
-                        // Post again 16ms later.
+                        // 16 毫秒后再次发布。
                         handler.postDelayed(this, 16);
                     }
                 }
             });
         } else if (marker.equals(mAdelaide)) {
-            // This causes the marker at Adelaide to change color and alpha.
+            // 这会导致 Adelaide 的maker改变颜色和 alpha
             marker.setIcon(BitmapDescriptorFactory.defaultMarker(mRandom.nextFloat() * 360));
             marker.setAlpha(mRandom.nextFloat());
         }
 
-        // Markers have a z-index that is settable and gettable.
+        // Markers 具有可设置和可获取的 z-index。
         float zIndex = marker.getZIndex() + 1.0f;
         marker.setZIndex(zIndex);
         Toast.makeText(this, marker.getTitle() + " z-index set to " + zIndex,
                 Toast.LENGTH_SHORT).show();
 
         mLastSelectedMarker = marker;
-        // We return false to indicate that we have not consumed the event and that we wish
-        // for the default behavior to occur (which is for the camera to move such that the
-        // marker is centered and for the marker's info window to open, if it has one).
+//        我们返回 false 以表明我们还没有消费该事件并且我们希望
+//        为发生默认行为（即相机移动，使得
+//        标记居中并打开标记的信息窗口（如果有的话）。
         return false;
     }
 
+    /**
+     * 在信息窗口点击
+     */
     @Override
     public void onInfoWindowClick(Marker marker) {
         Toast.makeText(this, "Click Info Window", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 在信息窗口关闭
+     */
     @Override
     public void onInfoWindowClose(Marker marker) {
         //Toast.makeText(this, "Close Info Window", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 在信息窗口长按
+     */
     @Override
     public void onInfoWindowLongClick(Marker marker) {
         Toast.makeText(this, "Info Window long click", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * 在标记拖动开始
+     */
     @Override
     public void onMarkerDragStart(Marker marker) {
         mTopText.setText("onMarkerDragStart");
     }
 
+    /**
+     * 在标记拖拽结束
+     */
     @Override
     public void onMarkerDragEnd(Marker marker) {
         mTopText.setText("onMarkerDragEnd");
     }
 
+    /**
+     * 在标记拖动上
+     */
     @Override
     public void onMarkerDrag(Marker marker) {
         mTopText.setText("onMarkerDrag.  Current Position: " + marker.getPosition());
